@@ -4,11 +4,16 @@ services:
     image: tomcat:8
     ports:
       - "80:8080"
-    volumes_from:
-      - maven:rw
+    volumes:
+      - data_volume:/opt
+    depends_on:
+      - maven
+
   maven:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - /tmp/data
+      - .data_volume:/tmp/opt
+volumes:
+  data_volume:
