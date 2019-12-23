@@ -1,19 +1,21 @@
 version: '2'
 services:
   web:
+    container_name: web
     image: tomcat:8
     ports:
       - "80:8080"
     volumes:
-      - data_volume:/opt
+      - data_volume:/opt/tomcat/webapps
     depends_on:
       - maven
 
   maven:
+    container_name: construct
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .data_volume:/tmp/opt
+      - data_volume:/data_volume
 volumes:
   data_volume:
