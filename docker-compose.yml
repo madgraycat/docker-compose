@@ -6,7 +6,7 @@ services:
     ports:
       - "80:8080"
     volumes:
-      - data_volume:/opt/tomcat/webapps
+      - data_volume:/usr/local/tomcat/webapps
     depends_on:
       - maven
 
@@ -16,6 +16,6 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - data_volume:/data_volume
+      - data_volume:/boxfuse-sample-java-war-hello/target/
 volumes:
   data_volume:
